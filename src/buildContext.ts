@@ -17,7 +17,7 @@ const promisifiedAuthentication = <UserObjectType extends Express.User>(
     };
 
     const authFn = passport.authenticate(name, options, done);
-    return authFn(req, res);
+    return authFn(req, res, done);
   });
 
 const promisifiedLogin = <UserObjectType extends Express.User>(

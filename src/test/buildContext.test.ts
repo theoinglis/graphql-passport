@@ -16,7 +16,11 @@ describe('context.authenticate', () => {
     const options = { options: true };
     await context.authenticate('strategy-name', options);
 
-    expect(mockedAuthMiddleWare).toHaveBeenCalledWith(req, res);
+    const firstCallParams = mockedAuthMiddleWare.mock.calls[0];
+    expect(mockedAuthMiddleWare).toHaveBeenCalled();
+    expect(firstCallParams[0]).toBe(req);
+    expect(firstCallParams[1]).toBe(res);
+    expect(firstCallParams[2]).toBeDefined();
     expect(mockedAuthenticat).toHaveBeenCalledWith('strategy-name', options, expect.any(Function));
   });
 
